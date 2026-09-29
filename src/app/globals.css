@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/*
+  SOFT ELEGANT design tokens.
+  Soft yellow accent, warm off-white surfaces, charcoal text.
+*/
+@theme {
+  --color-cream: #fbf8f2;
+  --color-sand: #f4eee2;
+  --color-sand-deep: #ece3d2;
+  --color-line: #e5dcc9;
+  --color-line-soft: #efe8da;
+  --color-accent: #e9cb7e;
+  --color-accent-soft: #f8eed5;
+  --color-accent-deep: #b98f34;
+  --color-ink: #23211d;
+  --color-ink-soft: #3d3931;
+  --color-muted: #6e685f;
+  --color-muted-soft: #8d867b;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --shadow-soft: 0 1px 2px rgb(35 33 29 / 0.04), 0 8px 24px -12px rgb(35 33 29 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(35 33 29 / 0.05), 0 18px 40px -18px rgb(35 33 29 / 0.22);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Offset anchors so the sticky navbar never covers a section heading. */
+section[id] {
+  scroll-margin-top: 6.5rem;
+}
+
+/*
+  Size-specific typography: large headings get negative tracking and tight
+  leading; small caps labels keep positive tracking for legibility.
+*/
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h4 {
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+}
+
+p {
+  letter-spacing: 0;
+}
+
+/* Visible, consistent focus states for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--color-accent-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Frosted surfaces become solid when the user asks for less transparency. */
+@media (prefers-reduced-transparency: reduce) {
+  header .backdrop-blur-xl,
+  .backdrop-blur-xl {
+    background-color: var(--color-cream);
+    backdrop-filter: none;
+  }
+}
